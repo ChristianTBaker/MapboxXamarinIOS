@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\MapboxXamarinIOSSandbox\\MapboxXamarinIOSSandbox.csproj": {}
+  },
+  "projects": {
+    "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\MapboxXamarinIOSSandbox\\MapboxXamarinIOSSandbox.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\MapboxXamarinIOSSandbox\\MapboxXamarinIOSSandbox.csproj",
+        "projectName": "MapboxXamarinIOSSandbox",
+        "projectPath": "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\MapboxXamarinIOSSandbox\\MapboxXamarinIOSSandbox.csproj",
+        "packagesPath": "C:\\Users\\cbaker2\\.nuget\\packages\\",
+        "outputPath": "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\MapboxXamarinIOSSandbox\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\cbaker2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "xamarinios10"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "xamarinios10": {
+            "projectReferences": {
+              "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\Naxam.Mapbox.Common\\Naxam.Mapbox.Common.csproj": {
+                "projectPath": "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\Naxam.Mapbox.Common\\Naxam.Mapbox.Common.csproj"
+              },
+              "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\Naxam.Mapbox.iOS\\Naxam.Mapbox.iOS.csproj": {
+                "projectPath": "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\Naxam.Mapbox.iOS\\Naxam.Mapbox.iOS.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "xamarinios10": {
+          "dependencies": {
+            "Masonry": {
+              "target": "Package",
+              "version": "[0.6.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
+    "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\Naxam.Mapbox.Common\\Naxam.Mapbox.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\Naxam.Mapbox.Common\\Naxam.Mapbox.Common.csproj",
+        "projectName": "Naxam.Mapbox.Common",
+        "projectPath": "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\Naxam.Mapbox.Common\\Naxam.Mapbox.Common.csproj"
+      },
+      "frameworks": {
+        "portable45-net45+win8+wpa81": {}
+      }
+    },
+    "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\Naxam.Mapbox.iOS\\Naxam.Mapbox.iOS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\Naxam.Mapbox.iOS\\Naxam.Mapbox.iOS.csproj",
+        "projectName": "Naxam.Mapbox.iOS",
+        "projectPath": "D:\\TestingPersonalBindings\\MapboxXamarinIOS\\MapboxXamarinIOSSandbox\\Naxam.Mapbox.iOS\\Naxam.Mapbox.iOS.csproj"
+      },
+      "frameworks": {
+        "xamarinios10": {}
+      }
+    }
+  }
+}

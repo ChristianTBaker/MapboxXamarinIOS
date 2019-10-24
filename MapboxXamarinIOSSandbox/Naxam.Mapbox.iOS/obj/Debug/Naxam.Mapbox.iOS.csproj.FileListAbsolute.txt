@@ -1,0 +1,4 @@
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.iOS\bin\Debug\Naxam.Mapbox.iOS.dll
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.iOS\bin\Debug\Naxam.Mapbox.iOS.pdb
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.iOS\obj\Debug\Naxam.Mapbox.iOS.dll
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.iOS\obj\Debug\Naxam.Mapbox.iOS.pdb

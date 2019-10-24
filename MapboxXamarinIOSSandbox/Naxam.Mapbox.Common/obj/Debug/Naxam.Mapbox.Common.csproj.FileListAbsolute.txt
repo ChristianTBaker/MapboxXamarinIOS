@@ -1,0 +1,9 @@
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.Common\bin\Debug\Naxam.Mapbox.Common.dll
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.Common\bin\Debug\Naxam.Mapbox.Common.pdb
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.Common\bin\Debug\ModernHttpClient.dll
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.Common\bin\Debug\Newtonsoft.Json.dll
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.Common\bin\Debug\Newtonsoft.Json.xml
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.Common\obj\Debug\Naxam.Mapbox.Common.csprojAssemblyReference.cache
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.Common\obj\Debug\Naxam.Mapbox.Common.csproj.CopyComplete
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.Common\obj\Debug\Naxam.Mapbox.Common.dll
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\Naxam.Mapbox.Common\obj\Debug\Naxam.Mapbox.Common.pdb
