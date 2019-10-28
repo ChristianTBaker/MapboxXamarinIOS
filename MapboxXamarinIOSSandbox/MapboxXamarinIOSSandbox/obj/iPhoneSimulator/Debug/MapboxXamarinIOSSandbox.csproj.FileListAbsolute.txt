@@ -64,3 +64,5 @@ D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\MapboxXamari
 D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\MapboxXamarinIOSSandbox\obj\iPhoneSimulator\Debug\CopyFilesToMac\MapboxXamarinIOSSandbox.pdb.DebugSymbolsProjectOutputGroupOutput.stamp
 D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\MapboxXamarinIOSSandbox\obj\iPhoneSimulator\Debug\CopyFilesToMac\Info.plist.NoneOutput.stamp
 D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\MapboxXamarinIOSSandbox\obj\iPhoneSimulator\Debug\CopyFilesToMac\Entitlements.plist.NoneOutput.stamp
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\MapboxXamarinIOSSandbox\bin\iPhoneSimulator\Debug\Naxam.Mapbox.Common.dll.mdb
+D:\TestingPersonalBindings\MapboxXamarinIOS\MapboxXamarinIOSSandbox\MapboxXamarinIOSSandbox\bin\iPhoneSimulator\Debug\Naxam.Mapbox.iOS.dll.mdb

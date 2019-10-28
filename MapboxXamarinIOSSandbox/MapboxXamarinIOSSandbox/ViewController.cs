@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Runtime;
+using AddressBook;
 using CoreLocation;
 using Foundation;
 using Mapbox;
@@ -60,10 +62,10 @@ namespace MapboxXamarinIOSSandbox
 
             /*Dictionary<string, CLLocationCoordinate2D> boundsDict = FindBounds(lat1, lng1, lat2, lng2);*/
 
-            var lat1 = 41.897570;
-            var lng1 = -87.653572;
-            var lat2 = 28.588148;
-            var lng2 = 30.372121;
+            var lat1 = 21.353550;
+            var lng1 = -157.842061;
+            var lat2 = 35.832595;
+            var lng2 = 139.535024;
             var pickupPoint = new CLLocationCoordinate2D(lat1, lng1);
             var deliveryPoint = new CLLocationCoordinate2D(lat2, lng2);
 
@@ -76,16 +78,16 @@ namespace MapboxXamarinIOSSandbox
             var mapView = new MGLMapView(frame: View.Bounds)
             {
                 //This can be cleaned up at the end
-                ZoomLevel = 6,
+/*                ZoomLevel = 6,
                 CenterCoordinate = new CLLocationCoordinate2D(28.903782, -36.516551),
                 VisibleCoordinateBounds = initialBounds,
-                Direction = 0
+                Direction = 0*/
 
             };
 
             bool crossesMeridianOrDateline;
 
-            if ((lng1 > 0.0 && lng2 > 0.0) || (lng1 < 0.0 && lng2 < 0.0))
+            if ((lng1 > 0.0 && lng2 < 0.0) || (lng1 < 0.0 && lng2 > 0.0))
             {
                 crossesMeridianOrDateline = true;
             }
@@ -95,36 +97,70 @@ namespace MapboxXamarinIOSSandbox
             }
 
             var xDiffPrimeMeridianZero = FindXDiffPrimeMeridianZero(lng1, lng2);
-            var xDiffDatelineZero = FindXDiffDateLineZero(lng1, lng2);
+            var xDiffDatelineZero = FindXDiffDatelineZero(lng1, lng2);
 
-            //I need to actually calculate the xDiff for each
+            List<double> xList;
+            List<double> lngList;
 
-
-            if ((xDiffDatelineZero > xDiffPrimeMeridianZero) && crossesMeridianOrDateline == true)
+            if ((Math.Abs(xDiffDatelineZero) > Math.Abs(xDiffPrimeMeridianZero)) && crossesMeridianOrDateline == true)
             {
-                // Find center coordinate here
+                var latCenter = (lat1 + lat2) / 2.0;
 
-                mapView.SetCenterCoordinate(new CLLocationCoordinate2D(28.903782, -36.312151), false);
-                mapView.SetZoomLevel(3.0, false);
+                // Find center coordinate here
+                var x1 = FindXPrimeMeridianZero(lng1);
+                var xCenter = x1 + (xDiffPrimeMeridianZero / 2.0);
+                double lngCenter;
+
+                if (x1 > 180.0)
+                {
+                    lngCenter = xCenter - 360.0;
+                }
+                else
+                {
+                    lngCenter = xCenter;
+                }
+
+                mapView.SetCenterCoordinate(new CLLocationCoordinate2D(latCenter, lngCenter), false);
+                mapView.SetZoomLevel(1.5, false);
+
+                xList = CreateXList(xDiffPrimeMeridianZero, x1);
+                lngList = ConvertToLngsPrimeMeridianZero(xList);
             }
             else
             {
                 // find max/min lat/lng here
                 // use those to determine the initialBounds
 
-                mapView.SetVisibleCoordinateBounds(initialBounds, new UIEdgeInsets(top: 0.0f, left: 0.0f, bottom: 0.0f, right: 0.0f), false);
+                var latDict = FindLowHigh(lat1, lat2);
+                var latHigh = latDict["high"];
+                var latLow = latDict["low"];
+                var lngDict = FindLowHigh(lng1, lng2);
+                var lngHigh = lngDict["high"];
+                var lngLow = lngDict["low"];
+
+                var latBuffer = (latHigh - latLow) / 10.0;
+                var lngBuffer = (lngHigh - lngLow) / 10.0;
+
+                var swLat = latLow - latBuffer;
+                var swLng = lngLow - lngBuffer;
+                var neLat = latHigh + latBuffer;
+                var neLng = lngHigh + lngBuffer;
+
+                var bounds = new MGLCoordinateBounds()
+                {
+                    sw = new CLLocationCoordinate2D(swLat, swLng),
+                    ne = new CLLocationCoordinate2D(neLat, neLng)
+                };
+
+                mapView.SetVisibleCoordinateBounds(bounds, new UIEdgeInsets(top: 0.0f, left: 0.0f, bottom: 0.0f, right: 0.0f), false);
+
+                xList = CreateXList(xDiffDatelineZero, FindXDatelineZero(lng1));
+                lngList = ConvertToLngsDatelineZero(xList);
             }
 
-            //Needs to be updated as I move and update parts of it
-            var xList = CreateXList(lng1, lng2, crossesMeridianOrDateline);
-
-
-
-/*            var yList = plotList[0];*/
             var yList = CreateYList(lat1, lat2);
 
             var latList = ConvertToLats(yList);
-            var lngList = ConvertToLngs(xList);
             var coords = ConvertToCoords(latList, lngList);
 
 
@@ -213,14 +249,8 @@ namespace MapboxXamarinIOSSandbox
             // Release any cached data, images, etc that aren't in use.
         }
 
-        private List<double> CreateXList(double lng1, double lng2, bool crossesMeridianOrDateline)
+        private List<double> CreateXList(double xDiff, double x1)
         {
-
-            var x1 = FindXPrimeMeridianZero(lng1);
-            var x2 = FindXPrimeMeridianZero(lng2);
-
-            var xDiff = x2 - x1;
-
 
             var xList = new List<double>();
             xList.Add(x1);
@@ -239,6 +269,16 @@ namespace MapboxXamarinIOSSandbox
             return xList;
         }
 
+        public double FindXDiffPrimeMeridianZero(double lng1, double lng2)
+        {
+            var x1 = FindXPrimeMeridianZero(lng1);
+            var x2 = FindXPrimeMeridianZero(lng2);
+
+            var xDiff = x2 - x1;
+
+            return xDiff;
+        }
+
         public double FindXPrimeMeridianZero(double lng)
         {
             double x;
@@ -255,7 +295,17 @@ namespace MapboxXamarinIOSSandbox
             return x;
         }
 
-        public double FindXDateLineZero(double lng)
+        public double FindXDiffDatelineZero(double lng1, double lng2)
+        {
+            var x1 = FindXDatelineZero(lng1);
+            var x2 = FindXDatelineZero(lng2);
+
+            var xDiff = x2 - x1;
+
+            return xDiff;
+        }
+
+        public double FindXDatelineZero(double lng)
         {
             return 180.0 + lng;
         }
@@ -284,7 +334,7 @@ namespace MapboxXamarinIOSSandbox
             return yList;
         }
 
-        private List<double> ConvertToLngs(List<double> xList)
+        private List<double> ConvertToLngsPrimeMeridianZero(List<double> xList)
         {
             var lngList = new List<double>();
 
@@ -298,6 +348,18 @@ namespace MapboxXamarinIOSSandbox
                 {
                     lngList.Add(x);
                 }
+            }
+
+            return lngList;
+        }
+
+        private List<double> ConvertToLngsDatelineZero(List<double> xList)
+        {
+            var lngList = new List<double>();
+
+            foreach (double x in xList)
+            {
+                lngList.Add(x - 180.0);
             }
 
             return lngList;
@@ -353,8 +415,6 @@ namespace MapboxXamarinIOSSandbox
             var lowLng = lowHighLng["low"];
             var highLng = lowHighLng["high"];
 
-
-
         }*/
 
         private Dictionary<string, double> FindLowHigh(double num1, double num2)
@@ -378,18 +438,6 @@ namespace MapboxXamarinIOSSandbox
                 {"low", low },
                 {"high", high }
             };
-        }
-
-        private double FindXDiffPrimeMeridianZero(double lng1, double lng2)
-        {
-
-
-            return 0.0;
-        }
-
-        private double FindXDiffDateLineZero(double lng1, double lng2)
-        {
-            return 0.0;
         }
 
     }
